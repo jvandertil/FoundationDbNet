@@ -1,0 +1,69 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26124.0
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{14867E16-C499-4336-9EB9-D584465041D3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{04756529-2CDD-4C21-A684-580392D3CB45}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet", "src\FoundationDbNet\FoundationDbNet.csproj", "{294573DE-92B6-4C9B-9EFC-3C51288E71BF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet.Tests", "test\FoundationDbNet.Tests\FoundationDbNet.Tests.csproj", "{D059DAE1-18A6-4779-9F0F-3D9639601ED9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "native", "native", "{34E3EA15-4257-458E-A2DA-A8A29BCC24D4}"
+	ProjectSection(SolutionItems) = preProject
+		native\libfdb_c_5.1.7.dll = native\libfdb_c_5.1.7.dll
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1A0D1FB-39B9-46E0-B3BD-D0B5E75A94B9}"
+	ProjectSection(SolutionItems) = preProject
+		CodeAnalysis.ruleset = CodeAnalysis.ruleset
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|x64.Build.0 = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Debug|x86.Build.0 = Debug|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|x64.ActiveCfg = Release|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|x64.Build.0 = Release|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|x86.ActiveCfg = Release|Any CPU
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF}.Release|x86.Build.0 = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|x64.Build.0 = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Debug|x86.Build.0 = Debug|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|x64.ActiveCfg = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|x64.Build.0 = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|x86.ActiveCfg = Release|Any CPU
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{294573DE-92B6-4C9B-9EFC-3C51288E71BF} = {04756529-2CDD-4C21-A684-580392D3CB45}
+		{D059DAE1-18A6-4779-9F0F-3D9639601ED9} = {14867E16-C499-4336-9EB9-D584465041D3}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B531D73B-E1D2-4E97-91E0-89D6C6711AD9}
+	EndGlobalSection
+EndGlobal

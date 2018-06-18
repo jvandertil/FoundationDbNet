@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ContentWithTargetPath Include="..\..\native\libfdb_c_5.1.7.dll" Link="libfdb_c_5.1.7.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>libfdb_c.dll</TargetPath>
+    </ContentWithTargetPath>
+  </ItemGroup>
+
+  <!-- Code Analysis-->
+  <PropertyGroup>
+    <CodeAnalysisRuleSet>../../CodeAnalysis.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" PrivateAssets="All" />
+  </ItemGroup>
+</Project>
