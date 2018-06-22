@@ -4,16 +4,23 @@
     using Shouldly;
     using Xunit;
 
+    [Collection("Fdb")]
     public class FdbTests
     {
         // Given
         private const int ApiVersion = FdbTestConstants.ApiVersion;
 
-        private readonly Fdb _fdb = Fdb.Instance;
+        private readonly Fdb _fdb;
+
+        public FdbTests(FdbFixture fixture)
+        {
+            _fdb = fixture.Fdb;
+        }
 
         public class TheInitializeMethod : FdbTests
         {
-            public TheInitializeMethod()
+            public TheInitializeMethod(FdbFixture fixture)
+                : base(fixture)
             {
                 // When
                 _fdb.Initialize(ApiVersion);
