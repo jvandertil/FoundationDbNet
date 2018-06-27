@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet.Tests", "te
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "native", "native", "{34E3EA15-4257-458E-A2DA-A8A29BCC24D4}"
 	ProjectSection(SolutionItems) = preProject
-		native\libfdb_c_5.1.7.dll = native\libfdb_c_5.1.7.dll
+		native\libfdb_c_5.2.5.dll = native\libfdb_c_5.2.5.dll
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E1A0D1FB-39B9-46E0-B3BD-D0B5E75A94B9}"

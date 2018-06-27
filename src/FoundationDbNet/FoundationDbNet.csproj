@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ContentWithTargetPath Include="..\..\native\libfdb_c_5.1.7.dll" Link="libfdb_c_5.1.7.dll">
+    <ContentWithTargetPath Include="..\..\native\libfdb_c_5.2.5.dll" Link="libfdb_c_5.2.5.dll">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <TargetPath>libfdb_c.dll</TargetPath>
     </ContentWithTargetPath>

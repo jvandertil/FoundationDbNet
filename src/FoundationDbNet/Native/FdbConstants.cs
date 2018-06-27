@@ -2,6 +2,6 @@
 {
     internal static class FdbConstants
     {
-        public const int FdbApiVersion = 510;
+        public const int FdbApiVersion = 520;
     }
 }

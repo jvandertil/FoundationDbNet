@@ -2,7 +2,7 @@
 {
     internal static class FdbTestConstants
     {
-        public const int ApiVersion = 510;
+        public const int ApiVersion = 520;
 
         public const string TestClusterFile = null;
     }

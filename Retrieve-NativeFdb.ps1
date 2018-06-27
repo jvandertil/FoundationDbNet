@@ -22,7 +22,7 @@ function Download-File($Url, $Destination)
 
 $nativeFolder = "$PSScriptRoot\native"
 
-$fdbVersion = "5.1.7"
+$fdbVersion = "5.2.5"
 $dllName = "libfdb_c_$fdbVersion.dll"
 
 $url = "https://www.foundationdb.org/downloads/$fdbVersion/windows/$dllName"
