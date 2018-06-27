@@ -20,4 +20,12 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" Version="2.6.1" PrivateAssets="All" />
   </ItemGroup>
+
+  <!-- NuGet properties-->
+  <PropertyGroup>
+    <PackageId>FoundationDbNet</PackageId>
+    <Version>0.0.1</Version>
+    <Authors>Jos van der Til</Authors>
+    <Company>van der Til.NET</Company>
+  </PropertyGroup>
 </Project>
