@@ -1,6 +1,6 @@
 ﻿namespace FoundationDbNet.Native
 {
-    public static class FdbConstants
+    internal static class FdbConstants
     {
         public const int FdbApiVersion = 510;
     }

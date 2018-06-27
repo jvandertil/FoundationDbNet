@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents a wrapper class for a FoundationDB cluster handle.
     /// </summary>
-    public sealed class FdbClusterHandle : SafeHandle
+    internal sealed class FdbClusterHandle : SafeHandle
     {
         /// <inheritdoc cref="SafeHandle.IsInvalid"/>
         public override bool IsInvalid

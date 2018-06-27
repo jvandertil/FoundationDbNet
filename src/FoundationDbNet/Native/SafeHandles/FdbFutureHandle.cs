@@ -10,7 +10,7 @@
     /// <remarks>
     /// A FoundationDB future represents an asynchronous operation in unmanaged code.
     /// </remarks>
-    public sealed class FdbFutureHandle : SafeHandle
+    internal sealed class FdbFutureHandle : SafeHandle
     {
         /// <inheritdoc cref="SafeHandle.IsInvalid"/>
         public override bool IsInvalid

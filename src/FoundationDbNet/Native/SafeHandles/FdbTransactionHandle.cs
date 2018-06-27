@@ -7,7 +7,7 @@
     /// <summary>
     /// Represents a wrapper class for a FoundationDB transaction handle.
     /// </summary>
-    public sealed class FdbTransactionHandle : SafeHandle
+    internal sealed class FdbTransactionHandle : SafeHandle
     {
         /// <inheritdoc cref="SafeHandle.IsInvalid"/>
         public override bool IsInvalid
