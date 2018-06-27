@@ -58,6 +58,7 @@
             }
         }
 
+        [Trait("RequiresFdbInstall", "true")]
         public class TheOpenClusterAsyncMethod : FdbTests, IDisposable
         {
             private readonly Task<FdbConnection> _connectionTask;
