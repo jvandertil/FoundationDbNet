@@ -2,6 +2,8 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
+    using FoundationDbNet.Futures;
     using FoundationDbNet.Native;
 
     /// <summary>
@@ -66,13 +68,8 @@
                     .EnsureSuccess();
 
                 // Start networking
-
-                Thread.BeginCriticalRegion();
-
                 RegisterShutdownHook();
                 _networkThread.Start();
-
-                Thread.EndCriticalRegion();
 
                 Initialized = true;
             }
@@ -104,6 +101,38 @@
         public void Dispose()
         {
             Terminate();
+        }
+
+        /// <summary>
+        /// Convenience method for calling <see cref="OpenClusterAsync"/> with <c>null</c>.
+        /// </summary>
+        /// <returns></returns>
+        public Task<FdbConnection> OpenDefaultClusterAsync() => OpenClusterAsync(null);
+
+        /// <summary>
+        /// Asynchronously opens a connection to a FoundationDB cluster.
+        /// </summary>
+        /// <param name="clusterFile">The location of the cluster file which contains the cluster information, or null to use the default cluster file location.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        public async Task<FdbConnection> OpenClusterAsync(string clusterFile)
+        {
+            var localFuture = NativeMethods.fdb_create_cluster(clusterFile);
+
+            try
+            {
+                using (var future = new FdbClusterFuture(localFuture))
+                {
+                    localFuture = null;
+
+                    var cluster = await future.ToTask().ConfigureAwait(false);
+
+                    return new FdbConnection(cluster);
+                }
+            }
+            finally
+            {
+                localFuture?.Dispose();
+            }
         }
 
         private void NetworkProcessingLoop()
