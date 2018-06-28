@@ -58,7 +58,12 @@
 
         protected abstract T GetResult();
 
-        private void SetResult(IntPtr futurePtr, IntPtr gchPtr)
+        public static implicit operator Task<T>(FdbFuture<T> ftr)
+        {
+            return ftr.ToTask();
+        }
+
+        private static void SetResult(IntPtr futurePtr, IntPtr gchPtr)
         {
             var fdbFutureGch = GCHandle.FromIntPtr(gchPtr);
 
@@ -78,7 +83,7 @@
 
                     if (error == FdbError.Success)
                     {
-                        var result = GetResult();
+                        var result = fdbFuture.GetResult();
 
                         task.SetResult(result);
                     }
@@ -92,11 +97,6 @@
             {
                 fdbFutureGch.Free();
             }
-        }
-
-        public static implicit operator Task<T>(FdbFuture<T> ftr)
-        {
-            return ftr.ToTask();
         }
     }
 }

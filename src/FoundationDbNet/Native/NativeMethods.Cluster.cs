@@ -7,5 +7,8 @@
     {
         [DllImport(FdbDll, CharSet = CharSet.Unicode)]
         public static extern FdbFutureHandle fdb_create_cluster(string clusterFilePath);
+
+        [DllImport(FdbDll)]
+        public static extern FdbFutureHandle fdb_cluster_create_database(FdbClusterHandle cluster, byte[] dbName, int len);
     }
 }
