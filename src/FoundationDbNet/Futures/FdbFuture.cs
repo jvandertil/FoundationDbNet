@@ -67,36 +67,31 @@
         {
             var fdbFutureGch = GCHandle.FromIntPtr(gchPtr);
 
-            try
+            FdbFuture<T> fdbFuture = (FdbFuture<T>)fdbFutureGch.Target;
+
+            Debug.Assert(fdbFuture != null);
+            Debug.Assert(futurePtr == fdbFuture.Handle.DangerousGetHandle());
+
+            using (fdbFuture)
             {
-                FdbFuture<T> fdbFuture = (FdbFuture<T>)fdbFutureGch.Target;
+                var task = fdbFuture._tcs;
+                var handle = fdbFuture.Handle;
 
-                Debug.Assert(fdbFuture != null);
-                Debug.Assert(futurePtr == fdbFuture.Handle.DangerousGetHandle());
+                FdbError error = NativeMethods.fdb_future_get_error(handle);
 
-                using (fdbFuture)
+                if (error == FdbError.Success)
                 {
-                    var task = fdbFuture._tcs;
-                    var handle = fdbFuture.Handle;
+                    var result = fdbFuture.GetResult();
 
-                    FdbError error = NativeMethods.fdb_future_get_error(handle);
-
-                    if (error == FdbError.Success)
-                    {
-                        var result = fdbFuture.GetResult();
-
-                        task.SetResult(result);
-                    }
-                    else
-                    {
-                        task.SetException(error.ToException());
-                    }
+                    task.SetResult(result);
+                }
+                else
+                {
+                    task.SetException(error.ToException());
                 }
             }
-            finally
-            {
-                fdbFutureGch.Free();
-            }
+
+            // fdbFutureGch does not require a Free, this is called by fdbFuture.Dispose()
         }
     }
 }

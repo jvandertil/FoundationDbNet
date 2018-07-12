@@ -3,7 +3,13 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="4.5.1" />
+  </ItemGroup>
 
   <ItemGroup>
     <ContentWithTargetPath Include="..\..\native\libfdb_c_5.2.5.dll" Link="libfdb_c_5.2.5.dll">

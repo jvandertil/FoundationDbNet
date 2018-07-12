@@ -1,8 +1,7 @@
-﻿using System.Threading.Tasks;
-using Shouldly;
-
-namespace FoundationDbNet.Tests.UnitTests
+﻿namespace FoundationDbNet.Tests.UnitTests
 {
+    using System.Threading.Tasks;
+    using Shouldly;
     using Xunit;
 
     [Collection("Fdb")]

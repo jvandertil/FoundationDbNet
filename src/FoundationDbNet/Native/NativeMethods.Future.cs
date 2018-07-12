@@ -17,5 +17,15 @@
 
         [DllImport(FdbDll)]
         public static extern FdbError fdb_future_get_cluster(FdbFutureHandle future, out FdbClusterHandle cluster);
+
+        [DllImport(FdbDll)]
+        public static extern FdbError fdb_future_get_database(FdbFutureHandle future, out FdbDatabaseHandle database);
+
+        [DllImport(FdbDll)]
+        public static extern FdbError fdb_future_get_value(
+            FdbFutureHandle future,
+            [MarshalAs(UnmanagedType.Bool)] out bool present,
+            out IntPtr value,
+            out int len);
     }
 }

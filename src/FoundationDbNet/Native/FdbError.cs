@@ -1,8 +1,11 @@
-﻿namespace FoundationDbNet.Native
+﻿using System;
+
+namespace FoundationDbNet.Native
 {
     /// <summary>
     /// Contains the values of error codes returned by FoundationDB API calls.
     /// </summary>
+    [Serializable]
     public enum FdbError : int
     {
         Success = 0,
