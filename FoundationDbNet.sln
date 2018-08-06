@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2047
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{1088B815-BD23-4757-A025-F7EF5E0D3F09}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{00A0100B-49D0-4183-ABD2-B066AC3DF943}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundationDbNet", "src\FoundationDbNet\FoundationDbNet.csproj", "{76A58041-77A4-4520-ABCC-988468E24F13}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{76A58041-77A4-4520-ABCC-988468E24F13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76A58041-77A4-4520-ABCC-988468E24F13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76A58041-77A4-4520-ABCC-988468E24F13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76A58041-77A4-4520-ABCC-988468E24F13}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{76A58041-77A4-4520-ABCC-988468E24F13} = {1088B815-BD23-4757-A025-F7EF5E0D3F09}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B06C62C3-755D-4BF5-8048-B75FB2299A26}
+	EndGlobalSection
+EndGlobal
