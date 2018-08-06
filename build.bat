@@ -4,7 +4,9 @@ IF "%CI_VERSION%"=="" (SET CI_VERSION="local")
 
 del /S /F /Q src\FoundationDbNet\bin
 del /S /F /Q src\FoundationDbNet\obj
-del /F *.nupkg
+rmdir /S /Q src\FoundationDbNet\bin
+rmdir /S /Q src\FoundationDbNet\obj
+del /F /Q *.nupkg
 
 dotnet restore --force FoundationDbNet.sln
 dotnet build --no-restore -c %CI_CONFIG% --version-suffix %CI_VERSION% FoundationDbNet.sln
