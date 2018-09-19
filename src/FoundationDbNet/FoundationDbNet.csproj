@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <VersionPrefix>0.0.1</VersionPrefix>
+  </PropertyGroup>
+
+  <!-- NuGet properties-->
+  <PropertyGroup>
+    <IsPackable>true</IsPackable>
+    <PackageId>FoundationDbNet</PackageId>
+    <Authors>Jos van der Til</Authors>
+    <Company>van der Til.NET</Company>
+    <Copyright>Copyright (C) 2018 van der Til.NET</Copyright>
+    <Description>Client library for connecting .NET applications tos FoundationDB.</Description>
+    <PackageTags>foundationdb;database</PackageTags>
+  </PropertyGroup>
+
+</Project>
