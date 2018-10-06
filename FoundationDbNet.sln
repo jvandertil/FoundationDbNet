@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0FBD1717-320
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{77F75FF6-B4B4-4A01-A0DB-B7C20B3A00DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundationDbNet.Tests", "test\FoundationDbNet.Tests\FoundationDbNet.Tests.csproj", "{6B8499FD-DA36-482B-BAFA-58E41477CFD3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet.Tests", "test\FoundationDbNet.Tests\FoundationDbNet.Tests.csproj", "{6B8499FD-DA36-482B-BAFA-58E41477CFD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundationDbNet", "src\FoundationDbNet\FoundationDbNet.csproj", "{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet", "src\FoundationDbNet\FoundationDbNet.csproj", "{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
