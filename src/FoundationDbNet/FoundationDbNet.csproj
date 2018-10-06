@@ -1,9 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
     <VersionPrefix>0.0.1</VersionPrefix>
+    <LangVersion>latest</LangVersion>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <!--<DefineConstants>LIBLOG_EXCLUDE_CODE_COVERAGE</DefineConstants>-->
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="LibLog" Version="5.0.2" />
+    <PackageReference Include="System.Memory" Version="4.5.1" />
+  </ItemGroup>
 
   <!-- NuGet properties-->
   <PropertyGroup>
@@ -15,5 +23,4 @@
     <Description>Client library for connecting .NET applications tos FoundationDB.</Description>
     <PackageTags>foundationdb;database</PackageTags>
   </PropertyGroup>
-
 </Project>
