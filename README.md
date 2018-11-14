@@ -6,4 +6,4 @@ At this time I do not recommend using this to access production FoundationDB ins
 ## Requirements
 
 You will need the FoundationDB C client library to use, or test this library.
-Run the Retrieve-NativeFdb.ps1 script to retrieve the binary drivers from the FoundationDB website.
+On Windows you can simply run the build.bat in the repository root which will handle this automatically for you.
