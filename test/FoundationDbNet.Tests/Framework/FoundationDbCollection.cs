@@ -1,4 +1,4 @@
-﻿namespace FoundationDbNet.Tests
+﻿namespace FoundationDbNet.Tests.Framework
 {
     using Xunit;
 

@@ -1,4 +1,4 @@
-﻿namespace FoundationDbNet.Tests.Features
+﻿namespace FoundationDbNet.Tests.Features.Transactions
 {
     using System;
     using System.Threading.Tasks;

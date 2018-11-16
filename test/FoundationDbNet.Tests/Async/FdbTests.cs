@@ -1,6 +1,8 @@
 ﻿namespace FoundationDbNet.Tests.Async
 {
     using FoundationDbNet.Extensions;
+    using FoundationDbNet.Tests.Framework;
+    using FoundationDbNet.Tests.Framework.Async;
     using Xunit;
 
     [Collection(Traits.FoundationDB)]

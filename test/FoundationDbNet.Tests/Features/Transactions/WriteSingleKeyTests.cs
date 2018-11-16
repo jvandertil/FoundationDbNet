@@ -1,10 +1,10 @@
-﻿namespace FoundationDbNet.Tests
-{
-    using System.Threading.Tasks;
-    using FoundationDbNet.Tests.Framework;
-    using NFluent;
-    using Xunit;
+﻿using System.Threading.Tasks;
+using FoundationDbNet.Tests.Framework;
+using NFluent;
+using Xunit;
 
+namespace FoundationDbNet.Tests.Features.Transactions
+{
     [Collection(Traits.FoundationDB)]
     public class WriteSingleKeyTests
     {

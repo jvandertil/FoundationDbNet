@@ -1,4 +1,4 @@
-﻿namespace FoundationDbNet.Tests.Async
+﻿namespace FoundationDbNet.Tests.Framework.Async
 {
     using System;
     using System.Threading.Tasks;
