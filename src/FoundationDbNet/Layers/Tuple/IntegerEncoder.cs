@@ -14,6 +14,9 @@
         {
             unchecked
             {
+                // Populate the max value that can be stored in a number of bytes:
+                // index 0 = max value in 1 byte
+                // index 7 = max value in 8 bytes
                 SizeLimits = new[]
                 {
                     (1UL << 08) - 1,
@@ -35,47 +38,27 @@
                 return ZeroValue;
             }
 
-            if (value > 0)
-            {
-                return EncodePositive(value);
-            }
+            int size = value > 0 ? NumberOfBytes((ulong)value) : NumberOfBytes((ulong)-value);
+            byte markerByte = value > 0 ? (byte)(ZeroValueByte + size) : (byte)(ZeroValueByte - size);
 
-            return EncodeNegative(value);
-        }
-
-        private ReadOnlySpan<byte> EncodePositive(long value)
-        {
-            int size = GetEncodedSizeInBytes((ulong)value);
+            // Take ones complement for negative values.
+            long valueToWrite = value > 0 ? value : ((long)SizeLimits[size - 1]) + value;
 
             Span<byte> result = new byte[8 + 1];
-            result[0] = (byte)(ZeroValueByte + size);
 
-            var destination = result.Slice(1);
-
-            MemoryMarshal.Write(destination, ref value);
-            destination.Slice(0, size).Reverse();
+            result[0] = markerByte;
+            WriteValueBigEndian(result.Slice(1), size, valueToWrite);
 
             return result.Slice(0, size + 1);
         }
 
-        private ReadOnlySpan<byte> EncodeNegative(long value)
+        private static void WriteValueBigEndian(Span<byte> buffer, int byteSize, long value)
         {
-            int size = GetEncodedSizeInBytes((ulong)-value);
-
-            Span<byte> result = new byte[8 + 1];
-            result[0] = (byte)(ZeroValueByte - size);
-
-            var destination = result.Slice(1);
-
-            var onesComplementValue = ((long)SizeLimits[size - 1]) + value;
-
-            MemoryMarshal.Write(destination, ref onesComplementValue);
-            destination.Slice(0, size).Reverse();
-
-            return result.Slice(0, size + 1);
+            MemoryMarshal.Write(buffer, ref value);
+            buffer.Slice(0, byteSize).Reverse();
         }
 
-        private int GetEncodedSizeInBytes(ulong value)
+        private static int NumberOfBytes(ulong value)
         {
             int size = SizeLimits.Length;
             for (int i = 0; i < SizeLimits.Length; ++i)
