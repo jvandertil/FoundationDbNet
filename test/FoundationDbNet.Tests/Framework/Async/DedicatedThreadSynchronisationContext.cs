@@ -29,7 +29,7 @@
         {
             if (d == null)
             {
-                throw new ArgumentNullException("d");
+                throw new ArgumentNullException(nameof(d));
             }
 
             m_queue.Add(new KeyValuePair<SendOrPostCallback, object>(d, state));

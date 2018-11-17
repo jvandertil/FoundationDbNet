@@ -7,7 +7,7 @@
         private const byte ByteStringMarkerByte = 0x01;
         private const byte TerminatingByte = 0x00;
 
-        private static readonly byte[] EmptyValue = new byte[] { ByteStringMarkerByte, TerminatingByte };
+        private static readonly byte[] EmptyValue = { ByteStringMarkerByte, TerminatingByte };
 
         public ReadOnlySpan<byte> Encode(ReadOnlyMemory<byte> value)
         {
