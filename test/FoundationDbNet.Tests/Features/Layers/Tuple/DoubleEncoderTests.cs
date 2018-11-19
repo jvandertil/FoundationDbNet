@@ -13,8 +13,10 @@ namespace FoundationDbNet.Tests.Features.Layers.Tuple
         }
 
         [Theory]
-        [InlineData(double.PositiveInfinity, "0X21FFF8000000000001")]
+        [InlineData(double.NaN, "0X210007FFFFFFFFFFFF")]
         [InlineData(10.101, "0X21C02433B645A1CAC1")]
+        [InlineData(10, "0x21c024000000000000")]
+        [InlineData(1.12333121337e+07, "0x21c1656d0404474539")]
         public void CanEncodeDouble(double value, string expected)
             => EncodeAndVerify(value, expected);
     }
