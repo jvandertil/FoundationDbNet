@@ -7,12 +7,12 @@ namespace FoundationDbNet.Layers.Tuple
     {
         private const byte DoubleMarkerByte = 0x21;
 
-        public ReadOnlySpan<byte> Encode(double value)
+        public ReadOnlyMemory<byte> Encode(double value)
         {
-            Span<byte> result = new byte[8 + 1];
+            var result = new byte[8 + 1];
             result[0] = DoubleMarkerByte;
 
-            var destination = result.Slice(1);
+            var destination = result.AsSpan().Slice(1);
 
             // Custom transformation
             MemoryMarshal.Write(destination, ref value);

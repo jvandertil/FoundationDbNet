@@ -9,7 +9,7 @@
 
         private static readonly byte[] EmptyValue = { ByteStringMarkerByte, TerminatingByte };
 
-        public ReadOnlySpan<byte> Encode(ReadOnlyMemory<byte> value)
+        public ReadOnlyMemory<byte> Encode(ReadOnlyMemory<byte> value)
         {
             if (value.IsEmpty)
             {

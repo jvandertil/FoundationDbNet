@@ -4,6 +4,6 @@
 
     public interface IEncoder<in T>
     {
-        ReadOnlySpan<byte> Encode(T value);
+        ReadOnlyMemory<byte> Encode(T value);
     }
 }

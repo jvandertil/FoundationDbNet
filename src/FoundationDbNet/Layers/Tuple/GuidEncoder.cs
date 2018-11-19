@@ -6,10 +6,10 @@
     {
         private const byte GuidMarkerByte = 0x30;
 
-        public ReadOnlySpan<byte> Encode(Guid value)
+        public ReadOnlyMemory<byte> Encode(Guid value)
         {
             Span<byte> bytes = value.ToByteArray().AsSpan();
-            Span<byte> result = new byte[1 + 16];
+            var result = new byte[1 + 16];
 
             result[0] = GuidMarkerByte;
 
@@ -30,7 +30,7 @@
 
             var source = bytes.Slice(8);
 
-            source.CopyTo(result.Slice(9));
+            source.CopyTo(result.AsSpan().Slice(9));
 
             return result;
         }

@@ -15,7 +15,7 @@
         private static readonly byte[] NullValue = { 0x00 };
         private static readonly byte[] EmptyValue = { UnicodeStringMarkerByte, TerminatingByte };
 
-        public ReadOnlySpan<byte> Encode(string value)
+        public ReadOnlyMemory<byte> Encode(string value)
         {
             if (value == null)
             {
@@ -45,14 +45,14 @@
                 // 2 marker bytes (start and end), the actual string, and null bytes are expanded to 2 bytes.
                 int resultSize = 1 + bytesWritten + numberOfNullBytes + 1;
 
-                Span<byte> result = new byte[resultSize];
+                var result = new byte[resultSize];
 
                 // Place start and end markers.
                 result[0] = UnicodeStringMarkerByte;
                 result[result.Length - 1] = TerminatingByte;
 
                 // Create slice to ease writing into result.
-                var destination = result.Slice(1, result.Length - 2);
+                var destination = result.AsSpan().Slice(1, result.Length - 2);
 
                 if (numberOfNullBytes == 0)
                 {

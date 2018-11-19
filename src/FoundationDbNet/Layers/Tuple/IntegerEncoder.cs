@@ -31,7 +31,7 @@
             }
         }
 
-        public ReadOnlySpan<byte> Encode(long value)
+        public ReadOnlyMemory<byte> Encode(long value)
         {
             if (value == 0)
             {
@@ -44,12 +44,13 @@
             // Take ones complement for negative values.
             long valueToWrite = value > 0 ? value : ((long)SizeLimits[size - 1]) + value;
 
-            Span<byte> result = new byte[8 + 1];
+            var result = new byte[8 + 1];
+            var destination = result.AsSpan().Slice(1);
 
             result[0] = markerByte;
-            WriteValueBigEndian(result.Slice(1), size, valueToWrite);
+            WriteValueBigEndian(destination, size, valueToWrite);
 
-            return result.Slice(0, size + 1);
+            return new Memory<byte>(result, 0, size + 1);
         }
 
         private static void WriteValueBigEndian(Span<byte> buffer, int byteSize, long value)

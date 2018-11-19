@@ -7,12 +7,12 @@
     {
         private const byte FloatMarkerByte = 0x20;
 
-        public ReadOnlySpan<byte> Encode(float value)
+        public ReadOnlyMemory<byte> Encode(float value)
         {
-            Span<byte> result = new byte[4 + 1];
+            var result = new byte[4 + 1];
             result[0] = FloatMarkerByte;
 
-            var destination = result.Slice(1);
+            var destination = result.AsSpan().Slice(1);
 
             // Custom transformation
             MemoryMarshal.Write(destination, ref value);
