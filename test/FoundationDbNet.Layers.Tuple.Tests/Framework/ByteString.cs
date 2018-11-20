@@ -1,4 +1,4 @@
-﻿namespace FoundationDbNet.Tests.Framework.Layers.Tuple
+﻿namespace FoundationDbNet.Layers.Tuple.Tests.Framework
 {
     using System;
 
@@ -32,7 +32,7 @@
         {
             if (str.Length == 0 || str.Length % 2 != 0)
             {
-                return new byte[0];
+                return Array.Empty<byte>();
             }
 
             byte[] buffer = new byte[str.Length / 2];

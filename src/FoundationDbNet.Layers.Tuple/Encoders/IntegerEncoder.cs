@@ -3,7 +3,7 @@
     using System;
     using System.Runtime.InteropServices;
 
-    public class IntegerEncoder : IEncoder<long>
+    internal class IntegerEncoder
     {
         private const byte ZeroValueByte = 0x14;
 
@@ -31,7 +31,7 @@
             }
         }
 
-        public ReadOnlyMemory<byte> Encode(long value)
+        public static ReadOnlyMemory<byte> Encode(long value)
         {
             if (value == 0)
             {
@@ -48,15 +48,19 @@
             var destination = result.AsSpan().Slice(1);
 
             result[0] = markerByte;
-            WriteValueBigEndian(destination, size, valueToWrite);
+            WriteBigEndian(destination, size, ref valueToWrite);
 
             return new Memory<byte>(result, 0, size + 1);
         }
 
-        private static void WriteValueBigEndian(Span<byte> buffer, int byteSize, long value)
+        private static void WriteBigEndian(Span<byte> buffer, int byteSize, ref long value)
         {
             MemoryMarshal.Write(buffer, ref value);
-            buffer.Slice(0, byteSize).Reverse();
+
+            if (BitConverter.IsLittleEndian)
+            {
+                buffer.Slice(0, byteSize).Reverse();
+            }
         }
 
         private static int NumberOfBytes(ulong value)

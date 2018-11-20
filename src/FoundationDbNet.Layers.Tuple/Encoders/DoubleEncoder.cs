@@ -3,24 +3,31 @@
     using System;
     using System.Runtime.InteropServices;
 
-    public class FloatEncoder : IEncoder<float>
+    internal class DoubleEncoder
     {
-        private const byte FloatMarkerByte = 0x20;
+        private const byte DoubleMarkerByte = 0x21;
 
-        public ReadOnlyMemory<byte> Encode(float value)
+        public static ReadOnlyMemory<byte> Encode(double value)
         {
-            var result = new byte[4 + 1];
-            result[0] = FloatMarkerByte;
+            var result = new byte[8 + 1];
+            result[0] = DoubleMarkerByte;
 
             var destination = result.AsSpan().Slice(1);
 
-            // Custom transformation
-            MemoryMarshal.Write(destination, ref value);
-            destination.Reverse();
-
+            WriteBigEndian(destination, ref value);
             ApplyCustomTransformation(destination);
 
             return result;
+        }
+
+        private static void WriteBigEndian(Span<byte> destination, ref double value)
+        {
+            MemoryMarshal.Write(destination, ref value);
+
+            if (BitConverter.IsLittleEndian)
+            {
+                destination.Reverse();
+            }
         }
 
         private static void ApplyCustomTransformation(Span<byte> buffer)

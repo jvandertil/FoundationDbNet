@@ -2,25 +2,23 @@
 
   <PropertyGroup>
     <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
-    <VersionPrefix>0.0.1</VersionPrefix>
     <LangVersion>latest</LangVersion>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <!--<DefineConstants>LIBLOG_EXCLUDE_CODE_COVERAGE</DefineConstants>-->
+    <VersionPrefix>0.0.1</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibLog" Version="5.0.3" />
     <PackageReference Include="System.Memory" Version="4.5.1" />
+    <PackageReference Include="System.Buffers" Version="4.5.0" />
   </ItemGroup>
 
   <!-- NuGet properties-->
   <PropertyGroup>
     <IsPackable>true</IsPackable>
-    <PackageId>FoundationDbNet</PackageId>
+    <PackageId>FoundationDbNet.Layers.Tuple</PackageId>
     <Authors>Jos van der Til</Authors>
     <Company>van der Til.NET</Company>
     <Copyright>Copyright (C) 2018 van der Til.NET</Copyright>
-    <Description>Client library for connecting .NET applications to FoundationDB.</Description>
+    <Description>Provides the Tuple layer for FoundationDbNet.</Description>
     <PackageTags>foundationdb;database</PackageTags>
   </PropertyGroup>
 </Project>

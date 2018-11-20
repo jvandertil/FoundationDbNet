@@ -11,6 +11,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet.Tests", "te
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FoundationDbNet", "src\FoundationDbNet\FoundationDbNet.csproj", "{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundationDbNet.Layers.Tuple", "src\FoundationDbNet.Layers.Tuple\FoundationDbNet.Layers.Tuple.csproj", "{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FoundationDbNet.Layers.Tuple.Tests", "test\FoundationDbNet.Layers.Tuple.Tests\FoundationDbNet.Layers.Tuple.Tests.csproj", "{9357CFAA-AAFD-40EE-8CF8-55556C73E744}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +29,14 @@ Global
 		{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9A796AB-E119-4332-89E2-3A5BE9AA0B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9357CFAA-AAFD-40EE-8CF8-55556C73E744}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9357CFAA-AAFD-40EE-8CF8-55556C73E744}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9357CFAA-AAFD-40EE-8CF8-55556C73E744}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9357CFAA-AAFD-40EE-8CF8-55556C73E744}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,6 +44,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{6B8499FD-DA36-482B-BAFA-58E41477CFD3} = {77F75FF6-B4B4-4A01-A0DB-B7C20B3A00DC}
 		{A9A796AB-E119-4332-89E2-3A5BE9AA0B04} = {0FBD1717-320A-4F20-B941-FFCFB5899DF1}
+		{5CA1CC5B-59C1-4F69-BA97-29BD6430ADC2} = {0FBD1717-320A-4F20-B941-FFCFB5899DF1}
+		{9357CFAA-AAFD-40EE-8CF8-55556C73E744} = {77F75FF6-B4B4-4A01-A0DB-B7C20B3A00DC}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9544CF17-5DAD-41A8-BCE8-E2E4645E7D23}

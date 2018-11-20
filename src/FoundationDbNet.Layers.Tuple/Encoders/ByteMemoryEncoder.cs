@@ -2,14 +2,14 @@
 {
     using System;
 
-    public class ByteMemoryEncoder : IEncoder<ReadOnlyMemory<byte>>
+    internal class ByteMemoryEncoder
     {
         private const byte ByteStringMarkerByte = 0x01;
         private const byte TerminatingByte = 0x00;
 
         private static readonly byte[] EmptyValue = { ByteStringMarkerByte, TerminatingByte };
 
-        public ReadOnlyMemory<byte> Encode(ReadOnlyMemory<byte> value)
+        public static ReadOnlyMemory<byte> Encode(ReadOnlyMemory<byte> value)
         {
             if (value.IsEmpty)
             {
