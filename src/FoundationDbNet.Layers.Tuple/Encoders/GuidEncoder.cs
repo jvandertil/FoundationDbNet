@@ -2,7 +2,7 @@
 {
     using System;
 
-    internal class GuidEncoder
+    internal static class GuidEncoder
     {
         private const byte GuidMarkerByte = 0x30;
 

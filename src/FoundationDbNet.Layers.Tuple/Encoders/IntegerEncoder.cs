@@ -3,12 +3,12 @@
     using System;
     using System.Runtime.InteropServices;
 
-    internal class IntegerEncoder
+    internal static class IntegerEncoder
     {
         private const byte ZeroValueByte = 0x14;
 
-        private static readonly byte[] ZeroValue = { ZeroValueByte };
-        private static readonly ulong[] SizeLimits;
+        private static readonly ReadOnlyMemory<byte> ZeroValue = new byte[] { ZeroValueByte };
+        private static readonly ReadOnlyMemory<ulong> SizeLimits;
 
         static IntegerEncoder()
         {
@@ -42,7 +42,7 @@
             byte markerByte = value > 0 ? (byte)(ZeroValueByte + size) : (byte)(ZeroValueByte - size);
 
             // Take ones complement for negative values.
-            long valueToWrite = value > 0 ? value : ((long)SizeLimits[size - 1]) + value;
+            long valueToWrite = value > 0 ? value : ((long)SizeLimits.Span[size - 1]) + value;
 
             var result = new byte[8 + 1];
             var destination = result.AsSpan().Slice(1);
@@ -68,7 +68,7 @@
             int size = SizeLimits.Length;
             for (int i = 0; i < SizeLimits.Length; ++i)
             {
-                if (value <= SizeLimits[i])
+                if (value <= SizeLimits.Span[i])
                 {
                     size = i + 1;
                     break;

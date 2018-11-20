@@ -5,7 +5,7 @@
 
     public sealed class FdbTuple
     {
-        private static readonly byte[] NullValue = { 0x00 };
+        private static readonly ReadOnlyMemory<byte> NullValue = new byte[] { 0x00 };
 
         private delegate ReadOnlyMemory<byte> ObjectEncoder<T>(T value) where T : class;
         private delegate ReadOnlyMemory<byte> ValueTypeEncoder<T>(T value) where T : struct;
@@ -86,9 +86,9 @@
         {
             int sum = 0;
 
-            foreach (var buffer in _buffers)
+            for (int i = 0; i < _buffers.Count; ++i)
             {
-                sum += buffer.Length;
+                sum += _buffers[i].Length;
             }
 
             return sum;

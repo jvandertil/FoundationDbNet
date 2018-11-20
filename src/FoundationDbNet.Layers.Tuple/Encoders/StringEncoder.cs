@@ -4,7 +4,7 @@
     using System.Buffers;
     using System.Text;
 
-    internal class StringEncoder
+    internal static class StringEncoder
     {
         private const byte UnicodeStringMarkerByte = 0x02;
         private const byte TerminatingByte = 0x00;
@@ -12,7 +12,7 @@
         private static readonly Encoding Utf8Encoding = Encoding.UTF8;
 
         private static readonly ArrayPool<byte> ArrayPool = ArrayPool<byte>.Shared;
-        private static readonly byte[] EmptyValue = { UnicodeStringMarkerByte, TerminatingByte };
+        private static readonly ReadOnlyMemory<byte> EmptyValue = new byte[] { UnicodeStringMarkerByte, TerminatingByte };
 
         public static ReadOnlyMemory<byte> Encode(string value)
         {

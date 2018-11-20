@@ -2,10 +2,10 @@
 {
     using System;
 
-    internal class BooleanEncoder
+    internal static class BooleanEncoder
     {
-        private static readonly byte[] FalseValue = { 0x26 };
-        private static readonly byte[] TrueValue = { 0x27 };
+        private static readonly ReadOnlyMemory<byte> FalseValue = new byte[] { 0x26 };
+        private static readonly ReadOnlyMemory<byte> TrueValue = new byte[] { 0x27 };
 
         public static ReadOnlyMemory<byte> Encode(bool value)
         {

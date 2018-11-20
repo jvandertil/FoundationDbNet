@@ -3,7 +3,7 @@
     using System;
     using System.Runtime.InteropServices;
 
-    internal class FloatEncoder
+    internal static class FloatEncoder
     {
         private const byte FloatMarkerByte = 0x20;
 

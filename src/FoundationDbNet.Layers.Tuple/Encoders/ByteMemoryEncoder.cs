@@ -2,12 +2,12 @@
 {
     using System;
 
-    internal class ByteMemoryEncoder
+    internal static class ByteMemoryEncoder
     {
         private const byte ByteStringMarkerByte = 0x01;
         private const byte TerminatingByte = 0x00;
 
-        private static readonly byte[] EmptyValue = { ByteStringMarkerByte, TerminatingByte };
+        private static readonly ReadOnlyMemory<byte> EmptyValue = new byte[] { ByteStringMarkerByte, TerminatingByte };
 
         public static ReadOnlyMemory<byte> Encode(ReadOnlyMemory<byte> value)
         {
@@ -31,11 +31,11 @@
             {
                 int position = 0;
 
-                for(int i = 0; i < source.Length; ++i)
+                for (int i = 0; i < source.Length; ++i)
                 {
                     byte val = destination[position++] = source[i];
 
-                    if(val == 0x00)
+                    if (val == 0x00)
                     {
                         destination[position++] = 0xFF;
                     }

@@ -3,7 +3,7 @@
     using System;
     using System.Runtime.InteropServices;
 
-    internal class DoubleEncoder
+    internal static class DoubleEncoder
     {
         private const byte DoubleMarkerByte = 0x21;
 
