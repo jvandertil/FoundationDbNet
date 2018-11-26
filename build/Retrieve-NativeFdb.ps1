@@ -26,15 +26,20 @@ function Download-File($Url, $Destination)
 $rootFolder = Join-Path $PSScriptRoot ".."
 $nativeFolder = Join-Path $rootFolder "native"
 
-$fdbVersion = "5.2.5"
-$dllName = "libfdb_c_$fdbVersion.dll"
-
-$url = "https://www.foundationdb.org/downloads/$fdbVersion/windows/$dllName"
-$destination = Join-Path $nativeFolder $dllName
-
 if( ! (Test-Path $nativeFolder) )
 {
     mkdir $nativeFolder
 }
 
-Download-File -Url $url -Destination $destination
+function Download-NativeLibrary($Version)
+{
+    $dllName = "libfdb_c_$Version.dll"
+
+    $url = "https://www.foundationdb.org/downloads/$Version/windows/$dllName"
+    $destination = Join-Path $nativeFolder $dllName
+
+    Download-File -Url $url -Destination $destination
+}
+
+Download-NativeLibrary -Version 5.2.5
+Download-NativeLibrary -Version 6.0.15

@@ -7,8 +7,6 @@
 
     internal static class FdbNetwork
     {
-        private const int MaxApiVersion = 520;
-
         private static readonly ILog Logger = LogProvider.GetCurrentClassLogger();
         private static readonly object SyncRoot = new object();
 
@@ -41,7 +39,7 @@
                     throw new InvalidOperationException($"ApiVersion already specified as '{_selectedApiVersion}', can only be set once.");
                 }
 
-                fdb_select_api_version_impl(apiVersion, MaxApiVersion)
+                fdb_select_api_version_impl(apiVersion, GetMaxApiVersion())
                     .EnsureSuccess();
                 Logger.Debug("Selected API version {0}.", apiVersion);
 
@@ -112,8 +110,17 @@
             }
         }
 
+        public static int GetMaxApiVersion()
+        {
+            return fdb_get_max_api_version();
+        }
+
         [DllImport(FdbConstants.FdbDll)]
         private static extern FdbError fdb_select_api_version_impl(int runtimeVersion, int headerVersion);
+
+
+        [DllImport(FdbConstants.FdbDll)]
+        private static extern int fdb_get_max_api_version();
 
         [DllImport(FdbConstants.FdbDll)]
         private static extern FdbError fdb_setup_network();

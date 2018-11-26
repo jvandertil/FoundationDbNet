@@ -1,6 +1,8 @@
 param(
-    $Configuration = "Release",
-    $VersionSuffix = "local"
+    [string]$Configuration = "Release",
+    [string]$VersionSuffix = "local",
+    [string]$OutputDirectory = (Join-Path $PSScriptRoot ".."),
+    [string]$TestResultOutputDirectory = (Join-Path $OutputDirectory "TestResults")
 )
 
 <#
@@ -26,8 +28,8 @@ Function Exec
 }
 
 $buildDir = $PSScriptRoot
-$rootDir = Resolve-Path "$PSScriptRoot\.."
-$testDir = Join-Path $rootDir test
+$rootDir = Join-Path $PSScriptRoot ".."
+$testDir = Join-Path $rootDir "test"
 $solutionName = "FoundationDbNet.sln"
 $solutionPath = Join-Path $rootDir $solutionName
 $buildConfiguration = $Configuration
@@ -47,21 +49,37 @@ Function Build-Solution
     exec { & dotnet build --no-restore --version-suffix=$VersionSuffix -c $buildConfiguration $solutionPath }
 }
 
-Function Run-TestProject($ProjectName)
+Function Run-IntegrationTests($FdbServerVersion, $FdbApiVersion)
 {
-    $project = Join-Path (Join-Path $testDir $ProjectName) "$ProjectName.csproj"
+    $env:FdbServerVersion = "v" + ($FdbServerVersion -replace "\.", "_")
+    $env:FdbApiVersion = $FdbApiVersion
 
-    exec { & dotnet test --no-build --verbosity=normal -c $buildConfiguration $project }
+    $projectDir = Join-Path $testDir "FoundationDbNet.Tests"
+    $project = Join-Path $projectDir "FoundationDbNet.Tests.csproj"
+
+    $projectTargets = (Join-Path (Join-Path $projectDir "bin") $Configuration) | ls
+
+    $projectTargets | % { 
+        cp "$rootDir\native\libfdb_c_$FdbServerVersion.dll" (Join-Path $_.FullName "libfdb_c.dll") 
+    }
+
+    $projectTargets | % {
+        Write-Output "Running tests for $_ on FoundationDB server $FdbServerVersion with API level $FdbApiVersion."
+        $timestamp = Get-Date -Format yyyyMMdd_HHmmss
+        exec { & dotnet test --no-build -f $_ --logger="trx;LogFileName=IntegrationTests_$_`_$FdbServerVersion`_$FdbApiVersion`_$timestamp.trx;TestRunName=TestName" -r $TestResultOutputDirectory --verbosity=normal -c $buildConfiguration $project }
+    }
 }
 
 Function Run-Tests
 {
-    Run-TestProject -ProjectName FoundationDbNet.Tests
+    Run-IntegrationTests -FdbServerVersion "5.2.5" -FdbApiVersion 520
+#    Run-IntegrationTests -FdbServerVersion "6.0.15" -FdbApiVersion 520
+    Run-IntegrationTests -FdbServerVersion "6.0.15" -FdbApiVersion 600
 }
 
 Function Create-Package
 {
-    exec { & dotnet pack -o $rootDir --no-build --include-symbols --version-suffix=$VersionSuffix -c $buildConfiguration $solutionPath }
+    exec { & dotnet pack -o $OutputDirectory --no-build --include-symbols --version-suffix=$VersionSuffix -c $buildConfiguration $solutionPath }
 }
 
 Clean-Solution

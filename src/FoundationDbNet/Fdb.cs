@@ -72,6 +72,11 @@
             }
         }
 
+        public int GetMaxApiVersion()
+        {
+            return FdbNetwork.GetMaxApiVersion();
+        }
+
         /// <summary>
         /// Terminates this instance.
         ///
