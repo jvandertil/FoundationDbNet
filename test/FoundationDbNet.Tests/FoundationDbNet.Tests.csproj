@@ -16,13 +16,13 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\FoundationDbNet\FoundationDbNet.csproj" />
 
-    <PackageReference Include="xunit" Version="2.4.0" />
+    <PackageReference Include="xunit" Version="2.4.1" />
     <PackageReference Include="NFluent" Version="2.4.0" />
     
     <PackageReference Include="FdbServer" Version="0.4.0" />
 
     <!-- Needed for dotnet cli and visual studio -->
-    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.4.1" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
   </ItemGroup>
 </Project>
