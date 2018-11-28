@@ -15,6 +15,8 @@
                 _rng.NextBytes(key);
             }
 
+            key[0] = 0x15;
+
             return key;
         }
     }
