@@ -1,3 +1,7 @@
+param (
+    [switch]$ForceBITS = $false
+)
+
 # Unfortunately required to enable TLS 1.2. Should be auto negotiated...
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -39,6 +43,12 @@ function Download-NativeLibrary($Version)
     $destination = Join-Path $nativeFolder $dllName
 
     Download-File -Url $url -Destination $destination
+}
+
+if ( $ForceBITS )
+{
+    Write-Host "FORCE: Starting BITS service"
+    Start-Service BITS
 }
 
 Download-NativeLibrary -Version 5.2.5
