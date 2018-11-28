@@ -73,7 +73,7 @@ Function Run-IntegrationTests($FdbServerVersion, $FdbApiVersion)
 Function Run-Tests
 {
     Run-IntegrationTests -FdbServerVersion "5.2.5" -FdbApiVersion 520
-#    Run-IntegrationTests -FdbServerVersion "6.0.15" -FdbApiVersion 520
+    Run-IntegrationTests -FdbServerVersion "6.0.15" -FdbApiVersion 520
     Run-IntegrationTests -FdbServerVersion "6.0.15" -FdbApiVersion 600
 }
 
