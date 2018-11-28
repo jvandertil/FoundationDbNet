@@ -2,6 +2,7 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     using FoundationDbNet.Layers.Tuple.Tests.Framework;
     using Xunit;
 
@@ -82,6 +83,37 @@
         [MemberData(nameof(TestData))]
         public void CanEncodeGuid(Guid value, string expected)
             => EncodeAndVerify(t => t.Add(value), expected);
+
+        [Theory]
+        [InlineData(new object[] { null }, "0x0500ff00")]
+        [InlineData(new object[] { "test1234567890" }, "0x050274657374313233343536373839300000")]
+        [InlineData(new object[] { "test", 12345L, null, 10.1234D }, "0x0502746573740016303900ff21c0243f2e48e8a71e00")]
+        public void CanEncodeFdbTuple(object[] values, string expected)
+        {
+            var tuple = new FdbTuple();
+
+            foreach (var value in values)
+            {
+                AddWithReflection(value);
+            }
+
+            EncodeAndVerify(t => t.Add(tuple), expected);
+
+            void AddWithReflection(object value)
+            {
+                var methods = typeof(FdbTuple)
+                    .GetMethods()
+                    .Where(x => x.Name == "Add");
+
+                var typeOfValue = value == null ? typeof(string) : value.GetType();
+
+                var method = methods
+                    .Where(x => x.GetParameters()[0].ParameterType.IsAssignableFrom(typeOfValue))
+                    .Single();
+
+                method.Invoke(tuple, new object[] { value });
+            }
+        }
 
         public static IEnumerable<object[]> TestData()
         {

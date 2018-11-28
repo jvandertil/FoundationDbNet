@@ -2,12 +2,11 @@
 {
     using System;
     using System.Collections.Generic;
+    using FoundationDbNet.Layers.Tuple.Encoders;
 
     public sealed class FdbTuple
     {
         private static readonly ReadOnlyMemory<byte> NullValue = new byte[] { 0x00 };
-        private static readonly ReadOnlyMemory<byte> EscapedNullValue = new byte[] { 0x00, 0xFF };
-        private static readonly ReadOnlyMemory<byte> TupleMarker = new byte[] { 0x05 };
 
         private delegate ReadOnlyMemory<byte> ObjectEncoder<T>(T value) where T : class;
         private delegate ReadOnlyMemory<byte> ValueTypeEncoder<T>(T value) where T : struct;
@@ -40,32 +39,9 @@
         public FdbTuple Add(string value)
             => AddEncoded(value, x => StringEncoder.Encode(x));
 
-        public FdbTuple Add(FdbTuple tuple)
-        {
-            if (tuple == null)
-            {
-                _buffers.Add(NullValue);
-            }
-
-            _buffers.Add(TupleMarker);
-
-            foreach (var buffer in tuple._buffers)
-            {
-                if (buffer.Length == 1 && buffer.Span[0] == 0x00)
-                {
-                    _buffers.Add(EscapedNullValue);
-                }
-                else
-                {
-                    _buffers.Add(buffer);
-                }
-            }
-
-            _buffers.Add(NullValue);
-
-            return this;
-        }
-
+        public FdbTuple Add(FdbTuple value)
+            => AddEncoded(value, x => TupleEncoder.Encode(x));
+        
         public ReadOnlySpan<byte> Pack()
         {
             if (_buffers.Count == 0)
@@ -87,6 +63,11 @@
             }
 
             return result;
+        }
+
+        internal IReadOnlyList<ReadOnlyMemory<byte>> GetEncoded()
+        {
+            return _buffers;
         }
 
         private FdbTuple AddEncoded<T>(T value, ObjectEncoder<T> encoder) where T : class

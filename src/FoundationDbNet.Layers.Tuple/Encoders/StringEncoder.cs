@@ -1,4 +1,4 @@
-﻿namespace FoundationDbNet.Layers.Tuple
+﻿namespace FoundationDbNet.Layers.Tuple.Encoders
 {
     using System;
     using System.Buffers;
