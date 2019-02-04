@@ -6,7 +6,7 @@
     using FoundationDbNet.Layers.Tuple.Tests.Framework;
     using Xunit;
 
-    public class SimpleFdbTupleTests : FdbTupleTestBase
+    public class FdbTupleEncodingTests : FdbTupleTestBase
     {
         [Theory]
         [InlineData(true, "0x27")]

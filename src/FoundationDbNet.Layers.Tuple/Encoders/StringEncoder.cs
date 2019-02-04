@@ -21,16 +21,17 @@
                 return EmptyValue;
             }
 
+
             int bytesWritten = 0;
-            byte[] scratch = null;
+
             Span<byte> source = default;
+
+            int maxNumberOfBytes = Utf8Encoding.GetMaxByteCount(value.Length);
+            byte[] scratch = ArrayPool.Rent(maxNumberOfBytes);
 
             try
             {
                 // Get large enough scratch buffer from array pool.
-                int maxNumberOfBytes = Utf8Encoding.GetMaxByteCount(value.Length);
-                scratch = ArrayPool.Rent(maxNumberOfBytes);
-
                 bytesWritten = Utf8Encoding.GetBytes(value, 0, value.Length, scratch, 0);
                 source = scratch.AsSpan(0, bytesWritten);
 
@@ -72,16 +73,13 @@
             }
             finally
             {
-                if (scratch != null)
-                {
-                    source.Clear();
+                source.Clear();
 
-                    // If bytesWritten == 0 and we are here, then an exception occurred while encoding the string.
-                    // In this case we can not know if anything was written to the buffer.
-                    // To avoid leaking any data to the pool, let the pool clear it.
-                    // If bytesWritten != 0 then source should have taken care of clearing only what was written.
-                    ArrayPool.Return(scratch, bytesWritten == 0);
-                }
+                // If bytesWritten == 0 and we are here, then an exception occurred while encoding the string.
+                // In this case we can not know if anything was written to the buffer.
+                // To avoid leaking any data to the pool, let the pool clear it.
+                // If bytesWritten != 0 then source should have taken care of clearing only what was written.
+                ArrayPool.Return(scratch, bytesWritten == 0);
             }
         }
 

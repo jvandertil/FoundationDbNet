@@ -1,8 +1,9 @@
 ﻿namespace FoundationDbNet
 {
     using System;
+    using System.Buffers;
 
-    public class FdbValue : IEquatable<FdbValue>
+    public class FdbValue : IEquatable<FdbValue>, IDisposable
     {
         public static readonly FdbValue NonExistent = new FdbValue(false, ReadOnlyMemory<byte>.Empty);
 
@@ -10,7 +11,7 @@
 
         public bool IsPresent { get; }
 
-        public ReadOnlyMemory<byte> Value { get; }
+        public IMemoryOwner<byte> Value { get; }
 
         public FdbValue(bool present, ReadOnlyMemory<byte> value)
         {

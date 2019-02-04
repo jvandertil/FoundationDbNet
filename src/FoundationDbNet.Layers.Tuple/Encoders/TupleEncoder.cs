@@ -13,7 +13,7 @@
         {
             int escapedSize = 0;
 
-            var buffers = tuple.GetEncoded();
+            var buffers = tuple.GetBuffersInternal();
 
             for (int i = 0; i < buffers.Count; ++i)
             {
@@ -52,7 +52,7 @@
         private static bool IsNullValue(ReadOnlyMemory<byte> buffer)
         {
             return buffer.Length == 1
-                && buffer.Span[0] == 0x00;
+                   && buffer.Span[0] == 0x00;
         }
     }
 }

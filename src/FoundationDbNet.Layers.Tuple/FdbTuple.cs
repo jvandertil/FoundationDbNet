@@ -6,16 +6,21 @@
 
     public sealed class FdbTuple
     {
-        private static readonly ReadOnlyMemory<byte> NullValue = new byte[] { 0x00 };
-
         private delegate ReadOnlyMemory<byte> ObjectEncoder<T>(T value) where T : class;
         private delegate ReadOnlyMemory<byte> ValueTypeEncoder<T>(T value) where T : struct;
+
+        private static readonly ReadOnlyMemory<byte> NullValue = new byte[] { 0x00 };
 
         private readonly List<ReadOnlyMemory<byte>> _buffers;
 
         public FdbTuple()
+            : this(4)
         {
-            _buffers = new List<ReadOnlyMemory<byte>>(4);
+        }
+
+        public FdbTuple(int capacity)
+        {
+            _buffers = new List<ReadOnlyMemory<byte>>(capacity);
         }
 
         public FdbTuple Add(bool value)
@@ -41,15 +46,15 @@
 
         public FdbTuple Add(FdbTuple value)
             => AddEncoded(value, x => TupleEncoder.Encode(x));
-        
+
         public ReadOnlySpan<byte> Pack()
         {
             if (_buffers.Count == 0)
             {
                 return Array.Empty<byte>();
             }
-
-            Span<byte> result = new byte[GetEncodedLength()];
+            int length = GetEncodedLength();
+            Span<byte> result = new byte[length];
             Span<byte> destination = result;
 
             int offset = 0;
@@ -65,7 +70,7 @@
             return result;
         }
 
-        internal IReadOnlyList<ReadOnlyMemory<byte>> GetEncoded()
+        internal IReadOnlyList<ReadOnlyMemory<byte>> GetBuffersInternal()
         {
             return _buffers;
         }
